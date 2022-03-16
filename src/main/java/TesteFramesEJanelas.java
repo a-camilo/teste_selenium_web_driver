@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class TesteFrames {
+public class TesteFramesEJanelas {
 
     private WebDriver driver;
 
@@ -25,7 +25,7 @@ public class TesteFrames {
     }
 
     @Test
-    public void deveInteragirComFrames(){
+    public void deveInteragirComFrames() {
         driver.switchTo().frame("frame1");
         driver.findElement(By.id("frameButton")).click();
 
@@ -36,5 +36,23 @@ public class TesteFrames {
 
         driver.switchTo().defaultContent();
         driver.findElement(By.id("elementosForm:nome")).sendKeys(msg);
+    }
+
+    @Test
+    public void deveInteragirComJanelas() {
+        driver.findElement(By.id("buttonPopUpEasy")).click();
+        driver.switchTo().window("Popup");
+        driver.findElement(By.tagName("textarea")).sendKeys("Teste Popup");
+        driver.close();
+        driver.switchTo().window("");
+        driver.findElement(By.tagName("textarea")).sendKeys("Eh agora?");
+    }
+
+    @Test
+    public void deveInteragirComJanelasSemTitulo() {
+        driver.findElement(By.id("buttonPopUpHard")).click();
+        driver.switchTo().window((String) driver.getWindowHandles().toArray()[1]);
+        driver.findElement(By.tagName("textarea")).sendKeys("Conseguiu?");
+        driver.switchTo().window((String) driver.getWindowHandles().toArray()[0]);
     }
 }
