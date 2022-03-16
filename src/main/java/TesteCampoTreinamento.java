@@ -89,7 +89,7 @@ public class TesteCampoTreinamento {
     @Test
     public void deveInteragirComLink() {
         driver.findElement(By.linkText("Voltar")).click();
-        assertEquals("Voltar", driver.findElement(By.linkText("Voltar")).getText());
+        assertEquals("Voltou!", driver.findElement(By.id("resultado")).getText());
     }
 
     @Test
