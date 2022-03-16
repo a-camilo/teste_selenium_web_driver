@@ -25,7 +25,7 @@ public class TesteCadastro {
     }
 
     @Test
-    public void cadastro() {
+    public void deveRealizarCadastroComSucesso() {
         driver.findElement(By.id("elementosForm:nome")).sendKeys("Antonio");
         driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Santos");
         driver.findElement(By.id("elementosForm:sexo:0")).click();
