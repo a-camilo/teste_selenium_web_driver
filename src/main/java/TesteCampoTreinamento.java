@@ -39,27 +39,30 @@ public class TesteCampoTreinamento {
         driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Teste");
         assertEquals("Teste", driver.findElement(By.id("elementosForm:sugestoes")).getAttribute("value"));
     }
+
     @Test
-    public void deveInteragirRadioButton(){
+    public void deveInteragirRadioButton() {
         driver.findElement(By.id("elementosForm:sexo:0")).click();
         assertTrue(driver.findElement(By.id("elementosForm:sexo:0")).isSelected());
     }
+
     @Test
-    public void deveInteragirComCheckBox(){
+    public void deveInteragirComCheckBox() {
         driver.findElement(By.id("elementosForm:sexo:0")).click();
         assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:0")).isEnabled());
     }
+
     @Test
-    public void deveVerificarValoresCombo(){
+    public void deveVerificarValoresCombo() {
         WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
         Select combo = new Select(element);
         combo.selectByVisibleText("2o grau incompleto");
-        assertEquals("2o grau incompleto",combo.getFirstSelectedOption().getText());
+        assertEquals("2o grau incompleto", combo.getFirstSelectedOption().getText());
         List<WebElement> options = combo.getOptions();
-        assertEquals(8,options.size());
+        assertEquals(8, options.size());
         boolean encontrou = false;
-        for (WebElement option: options) {
-            if (option.getText().equals("Mestrado")){
+        for (WebElement option : options) {
+            if (option.getText().equals("Mestrado")) {
                 encontrou = true;
                 break;
             }
@@ -72,14 +75,25 @@ public class TesteCampoTreinamento {
         WebElement element = driver.findElement(By.id("elementosForm:esportes"));
         Select combo = new Select(element);
         combo.selectByVisibleText("Natacao");
-        assertEquals("Natacao",combo.getFirstSelectedOption().getText());
+        assertEquals("Natacao", combo.getFirstSelectedOption().getText());
 
     }
 
     @Test
-    public void deveINteragirComBotoes(){
+    public void deveINteragirComBotoes() {
         WebElement botao = driver.findElement(By.id("buttonSimple"));
         botao.click();
-        assertEquals("Obrigado!",botao.getAttribute("value"));
+        assertEquals("Obrigado!", botao.getAttribute("value"));
+    }
+
+    @Test
+    public void deveInteragirComLink() {
+        driver.findElement(By.linkText("Voltar")).click();
+        assertEquals("Voltar", driver.findElement(By.linkText("Voltar")).getText());
+    }
+
+    @Test
+    public void deveProcurarTextoNaPagina() {
+        assertEquals("Campo de Treinamento", driver.findElement(By.tagName("h3")).getText());
     }
 }
