@@ -10,6 +10,7 @@ public class TesteCadastro {
 
     private WebDriver driver;
     private DSL dsl;
+    private CampoTreinamentoPage page;
 
     @BeforeEach
     public void inicializa() {
@@ -17,6 +18,7 @@ public class TesteCadastro {
         driver = new ChromeDriver();
         driver.get("file:///C:/Users/AntonioCamiloGomesdo/Desktop/componentes.html");
         dsl = new DSL(driver);
+        page = new CampoTreinamentoPage(driver);
     }
 
     @AfterEach
@@ -27,15 +29,15 @@ public class TesteCadastro {
 
     @Test
     public void deveRealizarCadastroComSucesso() {
-        dsl.escreve("elementosForm:nome", "Antonio");
-        dsl.escreve("elementosForm:sobrenome", "Santos");
-        dsl.clicarRadio("elementosForm:sexo:0");
-        dsl.clicarRadio("elementosForm:comidaFavorita:2");
-        dsl.selecionarCombo("elementosForm:escolaridade", "Superior");
-        dsl.selecionarCombo("elementosForm:esportes", "Natacao");
-        dsl.selecionarCombo("elementosForm:esportes", "Futebol");
-        dsl.obterTexto("elementosForm:sugestoes");
-        dsl.botao("elementosForm:cadastrar");
+        page.setNome("Antonio");
+        page.setSobrenome("Santos");
+        page.setSexoMasculino();
+        page.setComidaFavoritaPizza();
+        page.setEscolaridade("Superior");
+        page.setEsporte("Natacao");
+        page.setEsporte("Futebol");
+        page.setCampoSugestao();
+        page.botaoCadastrar();
 
         Assertions.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
         Assertions.assertEquals("Nome: Antonio", driver.findElement(By.id("descNome")).getText());
