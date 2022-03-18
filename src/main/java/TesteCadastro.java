@@ -39,7 +39,7 @@ public class TesteCadastro {
         page.setCampoSugestao();
         page.botaoCadastrar();
 
-        Assertions.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
+        Assertions.assertTrue(page.obterResultadoCadastro().startsWith("Cadastrado!"));
         Assertions.assertEquals("Nome: Antonio", driver.findElement(By.id("descNome")).getText());
         Assertions.assertEquals("Sobrenome: Santos", driver.findElement(By.id("descSobrenome")).getText());
         Assertions.assertEquals("Sexo: Masculino", driver.findElement(By.id("descSexo")).getText());

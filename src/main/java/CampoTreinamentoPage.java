@@ -1,3 +1,4 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class CampoTreinamentoPage {
@@ -53,5 +54,9 @@ public class CampoTreinamentoPage {
 
     public void botaoCadastrar() {
         dsl.botao("elementosForm:cadastrar");
+    }
+
+    public String obterResultadoCadastro(){
+        return dsl.obterTexto("resultado");
     }
 }
