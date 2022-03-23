@@ -2,14 +2,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TesteCadastro {
 
     private WebDriver driver;
-    private DSL dsl;
     private CampoTreinamentoPage page;
 
     @BeforeEach
@@ -17,7 +15,6 @@ public class TesteCadastro {
         System.setProperty("webdriver.chrome.driver", "C:/Users/AntonioCamiloGomesdo/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("file:///C:/Users/AntonioCamiloGomesdo/Desktop/componentes.html");
-        dsl = new DSL(driver);
         page = new CampoTreinamentoPage(driver);
     }
 
@@ -40,11 +37,11 @@ public class TesteCadastro {
         page.botaoCadastrar();
 
         Assertions.assertTrue(page.obterResultadoCadastro().startsWith("Cadastrado!"));
-        Assertions.assertEquals("Nome: Antonio", driver.findElement(By.id("descNome")).getText());
-        Assertions.assertEquals("Sobrenome: Santos", driver.findElement(By.id("descSobrenome")).getText());
-        Assertions.assertEquals("Sexo: Masculino", driver.findElement(By.id("descSexo")).getText());
-        Assertions.assertEquals("Comida: Pizza", driver.findElement(By.id("descComida")).getText());
-        Assertions.assertEquals("Escolaridade: superior", driver.findElement(By.id("descEscolaridade")).getText());
-        Assertions.assertEquals("Esportes: Natacao Futebol", driver.findElement(By.id("descEsportes")).getText());
+        Assertions.assertEquals("Nome: Antonio", page.obterNomeCadastro());
+        Assertions.assertEquals("Sobrenome: Santos", page.obterSobrenomeCadastro());
+        Assertions.assertEquals("Sexo: Masculino", page.obterSexoCadastro());
+        Assertions.assertEquals("Comida: Pizza", page.obterComidaCadastro());
+        Assertions.assertEquals("Escolaridade: superior", page.obterEscolaridadeCadastro());
+        Assertions.assertEquals("Esportes: Natacao Futebol", page.obterEsporteCadastro());
     }
 }

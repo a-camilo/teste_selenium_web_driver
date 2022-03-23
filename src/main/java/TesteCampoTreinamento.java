@@ -33,13 +33,19 @@ public class TesteCampoTreinamento {
 
     @Test
     public void testeTextField() {
-        dsl.escreve("elementosForm:nome", "Teste");
+        dsl.escreve(By.id("elementosForm:nome"), "Teste");
         assertEquals("Teste", dsl.obterValorCampo("elementosForm:nome"));
     }
-
+    @Test
+    public void textFieldDuplo(){
+        dsl.escreve(By.id("elementosForm:nome"),"Wagner");
+        Assertions.assertEquals("Wagner",dsl.obterValorCampo("elementosForm:nome"));
+        dsl.escreve(By.id("elementosForm:nome"),"Aquino");
+        Assertions.assertEquals("Aquino",dsl.obterValorCampo("elementosForm:nome"));
+    }
     @Test
     public void deveInteragirTextArea() {
-        dsl.escreve("elementosForm:sugestoes", "Testando a text area");
+        dsl.escreve(By.id("elementosForm:sugestoes"), "Testando a text area");
         assertEquals("Testando a text area", dsl.obterValorCampo("elementosForm:sugestoes"));
     }
 
@@ -47,7 +53,7 @@ public class TesteCampoTreinamento {
     public void deveInteragirRadioButton() {
         dsl.clicarRadio("elementosForm:sexo:0");
         assertTrue(driver.findElement(By.id("elementosForm:sexo:0")).isSelected());
-        assertTrue(dsl.isRadioSelected("elementosForm:sexo:0"));
+        assertTrue  (dsl.isRadioSelected("elementosForm:sexo:0"));
     }
 
     @Test

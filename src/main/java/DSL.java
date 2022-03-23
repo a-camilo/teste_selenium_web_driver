@@ -11,8 +11,9 @@ public class DSL {
         this.driver = driver;
     }
 
-    public void escreve(String id_campo, String texto) {
-        driver.findElement(By.id(id_campo)).sendKeys(texto);
+    public void escreve(By by, String texto) {
+        driver.findElement(by).clear();
+        driver.findElement(by).sendKeys(texto);
     }
 
     public String obterValorCampo(String id_campo) {
@@ -53,6 +54,10 @@ public class DSL {
     }
 
     public String obterTexto(String id) {
+        return obterTexto(By.id(id));
+    }
+
+    public String alertaObterTextoAceita(String id) {
         return obterTexto(By.id(id));
     }
 }

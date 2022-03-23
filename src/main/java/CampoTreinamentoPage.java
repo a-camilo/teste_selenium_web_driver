@@ -9,18 +9,18 @@ public class CampoTreinamentoPage {
     }
 
     public void setNome(String nome){
-        dsl.escreve("elementosForm:nome",nome);
+        dsl.escreve(By.id("elementosForm:nome"),nome);
     }
 
     public void setSobrenome(String sobrenome) {
-        dsl.escreve("elementosForm:sobrenome",sobrenome);
+        dsl.escreve(By.id("elementosForm:sobrenome"),sobrenome);
     }
 
     public void setSexoMasculino() {
         dsl.clicarRadio("elementosForm:sexo:0");
     }
 
-    public void setSexoFeminio() {
+    public void setSexoFeminino() {
         dsl.clicarRadio("elementosForm:sexo:1");
     }
 
@@ -58,5 +58,29 @@ public class CampoTreinamentoPage {
 
     public String obterResultadoCadastro(){
         return dsl.obterTexto("resultado");
+    }
+
+    public String obterEsporteCadastro() {
+        return dsl.obterTexto("descEsportes");
+    }
+
+    public String obterEscolaridadeCadastro() {
+        return dsl.obterTexto("descEscolaridade");
+    }
+
+    public String obterComidaCadastro() {
+        return dsl.obterTexto("descComida");
+    }
+
+    public String obterSexoCadastro() {
+        return dsl.obterTexto("descSexo");
+    }
+
+    public String obterSobrenomeCadastro() {
+        return dsl.obterTexto("descSobrenome");
+    }
+
+    public String obterNomeCadastro() {
+        return dsl.obterTexto("descNome");
     }
 }
