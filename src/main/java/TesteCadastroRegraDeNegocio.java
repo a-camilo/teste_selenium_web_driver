@@ -11,12 +11,15 @@ import org.openqa.selenium.support.ui.Select;
 public class TesteCadastroRegraDeNegocio {
 
     private WebDriver driver;
+    CampoTreinamentoPage page;
+
 
     @BeforeEach
     public void inicializa() {
-        System.setProperty("webdriver.chrome.driver", "C:/Users/AntonioCamiloGomesdo/drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("file:///C:/Users/AntonioCamiloGomesdo/Desktop/componentes.html");
+        page = new CampoTreinamentoPage(driver);
     }
 
     @AfterEach
@@ -26,8 +29,8 @@ public class TesteCadastroRegraDeNegocio {
     }
 
     @Test
-    public void deveValidarNomeObrigtorio() {
-        driver.findElement(By.id("elementosForm:cadastrar")).click();
+    public void deveValidarNomeObrigatorio() {
+        page.botaoCadastrar();
         Alert alert = driver.switchTo().alert();
         Assertions.assertEquals("Nome eh obrigatorio", alert.getText());
         alert.accept();
@@ -35,8 +38,8 @@ public class TesteCadastroRegraDeNegocio {
 
     @Test
     public void deveValidarSobrenomeObrigtorio() {
-        driver.findElement(By.id("elementosForm:nome")).sendKeys("Antonio");
-        driver.findElement(By.id("elementosForm:cadastrar")).click();
+        page.setNome(" seu nome ");
+        page.botaoCadastrar();
         Alert alert = driver.switchTo().alert();
         Assertions.assertEquals("Sobrenome eh obrigatorio", alert.getText());
         alert.accept();
@@ -44,34 +47,34 @@ public class TesteCadastroRegraDeNegocio {
 
     @Test
     public void deveValidarSexo() {
-        driver.findElement(By.id("elementosForm:nome")).sendKeys("Antonio");
-        driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Santos");
-        driver.findElement(By.id("elementosForm:cadastrar")).click();
+        page.setNome("seu nome");
+        page.setSobrenome("seu sobrenome");
+        page.botaoCadastrar();
         Alert alert = driver.switchTo().alert();
         Assertions.assertEquals("Sexo eh obrigatorio", alert.getText());
     }
 
     @Test
     public void deveValidarComidaVegetariana() {
-        driver.findElement(By.id("elementosForm:nome")).sendKeys("Antonio");
-        driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Santos");
-        driver.findElement(By.id("elementosForm:sexo:0")).click();
-        driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
-        driver.findElement(By.id("elementosForm:comidaFavorita:3")).click();
-        driver.findElement(By.id("elementosForm:cadastrar")).click();
+        page.setNome("seu nome");
+        page.setSobrenome("seu sobrenome");
+        page.setSexoMasculino();
+        page.setComidaFavoritaCarne();
+        page.setComidaFavoritaVegetariano();
+        page.botaoCadastrar();
         Alert alert = driver.switchTo().alert();
         Assertions.assertEquals("Tem certeza que voce eh vegetariano?", alert.getText());
     }
 
     @Test
     public void deveValidarEsportistaIndeciso() {
-        driver.findElement(By.id("elementosForm:nome")).sendKeys("Antonio");
-        driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Santos");
-        driver.findElement(By.id("elementosForm:sexo:0")).click();
-        driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
+        page.setNome("seu nome");
+        page.setSobrenome(" seu sobrenome");
+        page.setSexoMasculino();
+        page.setComidaFavoritaCarne();
         new Select(driver.findElement(By.id("elementosForm:esportes"))).selectByVisibleText("Natacao");
         new Select(driver.findElement(By.id("elementosForm:esportes"))).selectByVisibleText("O que eh esporte?");
-        driver.findElement(By.id("elementosForm:cadastrar")).click();
+        page.botaoCadastrar();
         Alert alert = driver.switchTo().alert();
         Assertions.assertEquals("Voce faz esporte ou nao?",alert.getText());
     }

@@ -9,7 +9,7 @@ public class TesteGoogle {
 
     @Test
     public void Google(){
-        System.setProperty("webdriver.chrome.driver","C:/Users/AntonioCamiloGomesdo/drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","src/main/resources/drivers/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.google.com");
         assertEquals("Google",driver.getTitle());

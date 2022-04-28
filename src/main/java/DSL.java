@@ -1,6 +1,4 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 
 public class DSL {
@@ -59,5 +57,24 @@ public class DSL {
 
     public String alertaObterTextoAceita(String id) {
         return obterTexto(By.id(id));
+    }
+
+    //*********** JS **********************
+    public Object executarJS(String cmd, Object... param) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return js.executeScript(cmd, param);
+    }
+
+    public void alertSwitch() {
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+    }
+
+    public WebDriver acessarFrame(String frame){
+        return driver.switchTo().frame(frame);
+    }
+
+    public WebDriver trocarJanela(String janela) {
+        return driver.switchTo().window(janela);
     }
 }

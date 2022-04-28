@@ -1,24 +1,28 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TesteFramesEJanelas {
 
     private WebDriver driver;
+    private DSL dsl;
 
-    @BeforeEach
+    @Before
     public void inicializa() {
-        System.setProperty("webdriver.chrome.driver", "C:/Users/AntonioCamiloGomesdo/drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("file:///C:/Users/AntonioCamiloGomesdo/Desktop/componentes.html");
+        dsl = new DSL(driver);
     }
 
-    @AfterEach
+    @After
     public void finaliza() throws InterruptedException {
         Thread.sleep(1000);
         driver.quit();
@@ -31,7 +35,7 @@ public class TesteFramesEJanelas {
 
         Alert alert = driver.switchTo().alert();
         String msg = alert.getText();
-        Assertions.assertEquals("Frame OK!", msg);
+        Assert.assertEquals("Frame OK!", msg);
         alert.accept();
 
         driver.switchTo().defaultContent();
@@ -39,18 +43,28 @@ public class TesteFramesEJanelas {
     }
 
     @Test
+    public void deveInteragirComFrameEscondido(){
+
+        WebElement frame = driver.findElement(By.id("frame2"));
+        dsl.executarJS("window.scrollBy(0,arguments[0])",frame.getLocation().y);
+        dsl.acessarFrame("frame2");
+        dsl.botao("frameButton");
+        dsl.alertSwitch();
+    }
+
+    @Test
     public void deveInteragirComJanelas() {
-        driver.findElement(By.id("buttonPopUpEasy")).click();
-        driver.switchTo().window("Popup");
-        driver.findElement(By.tagName("textarea")).sendKeys("Teste Popup");
+        dsl.botao("buttonPopUpEasy");
+        dsl.trocarJanela("Popup");
+        dsl.escreve(By.tagName("textarea"),"Teste Popup");
         driver.close();
-        driver.switchTo().window("");
-        driver.findElement(By.tagName("textarea")).sendKeys("Eh agora?");
+        dsl.trocarJanela("");
+        dsl.escreve(By.tagName("textarea"),"Eh agora?");
     }
 
     @Test
     public void deveInteragirComJanelasSemTitulo() {
-        driver.findElement(By.id("buttonPopUpHard")).click();
+        dsl.botao("buttonPopUpHard");
         driver.switchTo().window((String) driver.getWindowHandles().toArray()[1]);
         driver.findElement(By.tagName("textarea")).sendKeys("Conseguiu?");
         driver.switchTo().window((String) driver.getWindowHandles().toArray()[0]);

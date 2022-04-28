@@ -1,10 +1,8 @@
-import org.junit.jupiter.api.AfterEach;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -18,15 +16,15 @@ public class TesteCampoTreinamento {
     private WebDriver driver;
     private DSL dsl;
 
-    @BeforeEach
+    @Before
     public void inicializa() {
-        System.setProperty("webdriver.chrome.driver", "C:/Users/AntonioCamiloGomesdo/drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("file:///C:/Users/AntonioCamiloGomesdo/Desktop/componentes.html");
         dsl = new DSL(driver);
     }
 
-    @AfterEach
+    @After
     public void finaliza() {
         driver.quit();
     }
@@ -36,13 +34,16 @@ public class TesteCampoTreinamento {
         dsl.escreve(By.id("elementosForm:nome"), "Teste");
         assertEquals("Teste", dsl.obterValorCampo("elementosForm:nome"));
     }
+
     @Test
-    public void textFieldDuplo(){
-        dsl.escreve(By.id("elementosForm:nome"),"Wagner");
-        Assertions.assertEquals("Wagner",dsl.obterValorCampo("elementosForm:nome"));
-        dsl.escreve(By.id("elementosForm:nome"),"Aquino");
-        Assertions.assertEquals("Aquino",dsl.obterValorCampo("elementosForm:nome"));
+    public void textFieldDuplo() {
+
+        dsl.escreve(By.id("elementosForm:nome"), "Wagner");
+        Assertions.assertEquals("Wagner", dsl.obterValorCampo("elementosForm:nome"));
+        dsl.escreve(By.id("elementosForm:nome"), "Aquino");
+        Assertions.assertEquals("Aquino", dsl.obterValorCampo("elementosForm:nome"));
     }
+
     @Test
     public void deveInteragirTextArea() {
         dsl.escreve(By.id("elementosForm:sugestoes"), "Testando a text area");
@@ -51,14 +52,13 @@ public class TesteCampoTreinamento {
 
     @Test
     public void deveInteragirRadioButton() {
-        dsl.clicarRadio("elementosForm:sexo:0");
-        assertTrue(driver.findElement(By.id("elementosForm:sexo:0")).isSelected());
-        assertTrue  (dsl.isRadioSelected("elementosForm:sexo:0"));
+        dsl.clicarRadio("elementosForm:sexo:1");
+        assertTrue(dsl.isRadioSelected("elementosForm:sexo:1"));
     }
 
     @Test
     public void deveInteragirComCheckBox() {
-        driver.findElement(By.id("elementosForm:sexo:0")).click();
+        driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
         assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:0")).isEnabled());
     }
 
@@ -99,5 +99,15 @@ public class TesteCampoTreinamento {
     @Test
     public void deveProcurarTextoNaPagina() {
         assertEquals("Campo de Treinamento", dsl.obterTexto(By.tagName("h3")));
+    }
+
+    @Test
+    public void testJavaScript() {
+        dsl.executarJS("document.getElementById('elementosForm:nome').value =  'Escrito via JS'");
+        dsl.executarJS("document.getElementById('elementosForm:sobrenome').type = 'radio'");
+        WebElement element = driver.findElement(By.id("elementosForm:nome"));
+        dsl.executarJS("arguments[0].style.border = arguments[1]", element, "solid 4px red");
+        dsl.executarJS("alert('Testando JS via Selenium')");
+        dsl.alertSwitch();
     }
 }

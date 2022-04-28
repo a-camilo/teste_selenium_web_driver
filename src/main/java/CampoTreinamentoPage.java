@@ -8,12 +8,12 @@ public class CampoTreinamentoPage {
         dsl = new DSL(driver);
     }
 
-    public void setNome(String nome){
-        dsl.escreve(By.id("elementosForm:nome"),nome);
+    public void setNome(String nome) {
+        dsl.escreve(By.id("elementosForm:nome"), nome);
     }
 
     public void setSobrenome(String sobrenome) {
-        dsl.escreve(By.id("elementosForm:sobrenome"),sobrenome);
+        dsl.escreve(By.id("elementosForm:sobrenome"), sobrenome);
     }
 
     public void setSexoMasculino() {
@@ -24,7 +24,7 @@ public class CampoTreinamentoPage {
         dsl.clicarRadio("elementosForm:sexo:1");
     }
 
-    public void setComidaFavoritaCarne(){
+    public void setComidaFavoritaCarne() {
         dsl.clicarRadio("elementosForm:comidaFavorita:0");
     }
 
@@ -40,12 +40,12 @@ public class CampoTreinamentoPage {
         dsl.clicarRadio("elementosForm:comidaFavorita:3");
     }
 
-    public void setEscolaridade(String valor){
+    public void setEscolaridade(String valor) {
         dsl.selecionarCombo("elementosForm:escolaridade", valor);
     }
 
     public void setEsporte(String valor) {
-        dsl.selecionarCombo("elementosForm:esportes",valor );
+        dsl.selecionarCombo("elementosForm:esportes", valor);
     }
 
     public void setCampoSugestao() {
@@ -56,7 +56,7 @@ public class CampoTreinamentoPage {
         dsl.botao("elementosForm:cadastrar");
     }
 
-    public String obterResultadoCadastro(){
+    public String obterResultadoCadastro() {
         return dsl.obterTexto("resultado");
     }
 

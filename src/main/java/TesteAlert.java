@@ -13,7 +13,7 @@ public class TesteAlert {
 
     @BeforeEach
     public void inicializa() {
-        System.setProperty("webdriver.chrome.driver", "C:/Users/AntonioCamiloGomesdo/drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("file:///C:/Users/AntonioCamiloGomesdo/Desktop/componentes.html");
     }
