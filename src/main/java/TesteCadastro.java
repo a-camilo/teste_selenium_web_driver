@@ -5,10 +5,10 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class TesteCadastro {
+public class TesteCadastro extends BaseTest{
 
     private WebDriver driver;
-    private CampoTreinamentoPage page;
+    public CampoTreinamentoPage page;
 
     @Before
     public void inicializa() {

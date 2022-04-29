@@ -11,23 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TesteCampoTreinamento {
-
-    private WebDriver driver;
-    private DSL dsl;
-
-    @Before
-    public void inicializa() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.get("file:///C:/Users/AntonioCamiloGomesdo/Desktop/componentes.html");
-        dsl = new DSL(driver);
-    }
-
-    @After
-    public void finaliza() {
-        driver.quit();
-    }
+public class TesteCampoTreinamento extends BaseTest{
 
     @Test
     public void testeTextField() {

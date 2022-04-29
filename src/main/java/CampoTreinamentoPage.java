@@ -1,8 +1,8 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CampoTreinamentoPage {
-    private DSL dsl;
+public class CampoTreinamentoPage extends BaseTest{
+    public DSL dsl;
 
     public CampoTreinamentoPage(WebDriver driver) {
         dsl = new DSL(driver);

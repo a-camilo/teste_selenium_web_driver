@@ -1,32 +1,10 @@
-
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class TesteFramesEJanelas {
-
-    private WebDriver driver;
-    private DSL dsl;
-
-    @Before
-    public void inicializa() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.get("file:///C:/Users/AntonioCamiloGomesdo/Desktop/componentes.html");
-        dsl = new DSL(driver);
-    }
-
-    @After
-    public void finaliza() throws InterruptedException {
-        Thread.sleep(1000);
-        driver.quit();
-    }
+public class TesteFramesEJanelas extends BaseTest{
 
     @Test
     public void deveInteragirComFrames() {

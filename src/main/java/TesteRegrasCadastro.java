@@ -1,24 +1,16 @@
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 @RunWith(Parameterized.class)
-public class TesteRegrasCadastro {
-
-    private WebDriver driver;
-    private DSL dsl;
-    private CampoTreinamentoPage page;
+public class TesteRegrasCadastro extends BaseTest{
 
     @Parameter
     public String nome;
@@ -32,21 +24,6 @@ public class TesteRegrasCadastro {
     public String[] esportes;
     @Parameter(value = 5)
     public String msg;
-
-    @Before
-    public void inicializa() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.get("file:///C:/Users/AntonioCamiloGomesdo/Desktop/componentes.html");
-        dsl = new DSL(driver);
-        page = new CampoTreinamentoPage(driver);
-    }
-
-    @After
-    public void finaliza() throws InterruptedException {
-        Thread.sleep(1000);
-//        driver.quit();
-    }
 
     @Parameters
     public static Collection<Object[]> getCollection() {

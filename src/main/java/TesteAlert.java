@@ -1,28 +1,10 @@
-import org.junit.jupiter.api.AfterEach;
+import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class TesteAlert {
-
-    private WebDriver driver;
-
-    @BeforeEach
-    public void inicializa() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.get("file:///C:/Users/AntonioCamiloGomesdo/Desktop/componentes.html");
-    }
-
-    @AfterEach
-    public void finaliza() throws InterruptedException {
-        Thread.sleep(1000);
-        driver.quit();
-    }
+public class TesteAlert extends BaseTest{
 
     @Test
     public void deveInteragirComAlertSimples() {

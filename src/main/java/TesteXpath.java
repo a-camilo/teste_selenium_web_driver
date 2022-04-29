@@ -1,28 +1,7 @@
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class TesteXpath {
-
-    private WebDriver driver;
-    private DSL dsl;
-
-    @Before
-    public void inicializa() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.get("file:///C:/Users/AntonioCamiloGomesdo/Desktop/componentes.html");
-        dsl = new DSL(driver);
-    }
-
-    @After
-    public void finaliza() throws InterruptedException {
-        Thread.sleep(1000);
-        driver.quit();
-    }
+public class TesteXpath extends BaseTest{
 
     @Test
     public void textFildNome(){
