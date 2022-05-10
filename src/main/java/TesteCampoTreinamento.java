@@ -1,13 +1,12 @@
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
+import static camilo.antonio.core.DriveFactory.getDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -42,8 +41,8 @@ public class TesteCampoTreinamento extends BaseTest{
 
     @Test
     public void deveInteragirComCheckBox() {
-        driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
-        assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:0")).isEnabled());
+        getDriver().findElement(By.id("elementosForm:comidaFavorita:0")).click();
+        assertTrue(getDriver().findElement(By.id("elementosForm:comidaFavorita:0")).isEnabled());
     }
 
     @Test
@@ -57,7 +56,7 @@ public class TesteCampoTreinamento extends BaseTest{
         dsl.selecionarCombo("elementosForm:esportes", "Natacao");
         dsl.selecionarCombo("elementosForm:esportes", "Futebol");
         dsl.selecionarCombo("elementosForm:esportes", "Karate");
-        WebElement element = driver.findElement(By.id("elementosForm:esportes"));
+        WebElement element = getDriver().findElement(By.id("elementosForm:esportes"));
         Select combo = new Select(element);
 
         List<WebElement> allSelectedOptions = combo.getAllSelectedOptions();
@@ -70,7 +69,7 @@ public class TesteCampoTreinamento extends BaseTest{
     @Test
     public void deveInteragirComBotoes() {
         dsl.botao("buttonSimple");
-        WebElement botao = driver.findElement(By.id("buttonSimple"));
+        WebElement botao = getDriver().findElement(By.id("buttonSimple"));
         assertEquals("Obrigado!", botao.getAttribute("value"));
     }
 
@@ -89,7 +88,7 @@ public class TesteCampoTreinamento extends BaseTest{
     public void testJavaScript() {
         dsl.executarJS("document.getElementById('elementosForm:nome').value =  'Escrito via JS'");
         dsl.executarJS("document.getElementById('elementosForm:sobrenome').type = 'radio'");
-        WebElement element = driver.findElement(By.id("elementosForm:nome"));
+        WebElement element = getDriver().findElement(By.id("elementosForm:nome"));
         dsl.executarJS("arguments[0].style.border = arguments[1]", element, "solid 4px red");
         dsl.executarJS("alert('Testando JS via Selenium')");
         dsl.alertSwitch();

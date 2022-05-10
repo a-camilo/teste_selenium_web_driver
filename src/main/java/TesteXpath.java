@@ -10,11 +10,11 @@ public class TesteXpath extends BaseTest{
 
     @Test
     public void radioFem(){
-        dsl.obterTexto(By.xpath("//*[text()=' Feminino']"));
+        dsl.obterTexto(By.xpath("//*[@name='elementosForm:sexo'and @value='F']"));
     }
     @Test
     public void labelPizza(){
-        dsl.obterTexto(By.xpath("//*[text()=' Pizza']"));
+        dsl.obterTexto(By.xpath("//*[@id='elementosForm:comidaFavorita:2']/following-sibling::label"));
     }
 
     @Test
@@ -23,7 +23,10 @@ public class TesteXpath extends BaseTest{
     }
     @Test
     public void mariaBtn(){
-        dsl.obterTexto(By.xpath("//*[@id='elementosForm:tableUsuarios']/tbody/tr[2]/td[3]/input"));
+        //Umas das formas de encontrar o botão via Xpath
+
+//        dsl.obterTexto(By.xpath("//*[@id='elementosForm:tableUsuarios']/tbody/tr[2]/td[3]/input"));
+        dsl.obterTexto(By.xpath("//*[@id='elementosForm:tableUsuarios']//td[.='Maria']/..//input[@type='button']"));
     }
 
     @Test
@@ -33,6 +36,11 @@ public class TesteXpath extends BaseTest{
     @Test
     public void textFieldEscolaridade(){
         dsl.obterTexto(By.xpath("//*[@id='elementosForm:tableUsuarios']/tbody/tr[1]/td[6]/input"));
+    }
+
+    @Test
+    public void deveClicarBotaoTabela(){
+            dsl.clicarBotaoTabela("Nome","Maria","Botao","elementosForm:tabelaUsuarios");
     }
 
 }

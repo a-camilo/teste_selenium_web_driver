@@ -1,25 +1,26 @@
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+
+import static camilo.antonio.core.DriveFactory.getDriver;
 
 public class TesteAlert extends BaseTest{
 
     @Test
     public void deveInteragirComAlertSimples() {
-        driver.findElement(By.id("alert")).click();
-        Alert alert = driver.switchTo().alert();
+        getDriver().findElement(By.id("alert")).click();
+        Alert alert = getDriver().switchTo().alert();
         String texto = alert.getText();
         Assertions.assertEquals("Alert Simples", texto);
         alert.accept();
-        driver.findElement(By.id("elementosForm:nome")).sendKeys(texto);
+        getDriver().findElement(By.id("elementosForm:nome")).sendKeys(texto);
     }
 
     @Test
     public void deveInteragirComAlertConfirm() {
-        driver.findElement(By.id("confirm")).click();
-        Alert alert = driver.switchTo().alert();
+        getDriver().findElement(By.id("confirm")).click();
+        Alert alert = getDriver().switchTo().alert();
         String texto = alert.getText();
         Assertions.assertEquals("Confirm Simples", texto);
         alert.accept();
@@ -28,8 +29,8 @@ public class TesteAlert extends BaseTest{
         alert.accept();
 
 
-        driver.findElement(By.id("confirm")).click();
-        alert = driver.switchTo().alert();
+        getDriver().findElement(By.id("confirm")).click();
+        alert = getDriver().switchTo().alert();
         texto = alert.getText();
         Assertions.assertEquals("Confirm Simples", texto);
         alert.dismiss();
@@ -39,8 +40,8 @@ public class TesteAlert extends BaseTest{
     }
     @Test
     public void deveInteragirComPrompt(){
-        driver.findElement(By.id("prompt")).click();
-        Alert alert = driver.switchTo().alert();
+        getDriver().findElement(By.id("prompt")).click();
+        Alert alert = getDriver().switchTo().alert();
         Assertions.assertEquals("Digite um numero",alert.getText());
         alert.sendKeys("5");
         alert.accept();
