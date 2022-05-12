@@ -1,8 +1,6 @@
 package camilo.antonio.core;
 
 import camilo.antonio.page.CampoTreinamentoPage;
-import camilo.antonio.core.DSL;
-import camilo.antonio.core.DriveFactory;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
@@ -13,7 +11,6 @@ import org.openqa.selenium.TakesScreenshot;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.Duration;
 
 import static camilo.antonio.core.DriveFactory.getDriver;
 
@@ -26,7 +23,7 @@ public class BaseTest {
     @Before
     public void inicializa() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-        getDriver().get("file:///C:/Users/AntonioCamiloGomesdo/Desktop/componentes.html");
+        getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
         dsl = new DSL();
         page = new CampoTreinamentoPage();
     }
