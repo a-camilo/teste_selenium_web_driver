@@ -1,3 +1,6 @@
+package camilo.antonio.test;
+
+import camilo.antonio.core.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
@@ -6,7 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import static camilo.antonio.core.DriveFactory.getDriver;
 
-public class TesteFramesEJanelas extends BaseTest{
+public class TesteFramesEJanelas extends BaseTest {
 
     @Test
     public void deveInteragirComFrames() {

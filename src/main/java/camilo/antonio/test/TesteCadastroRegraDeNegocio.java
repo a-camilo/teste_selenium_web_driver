@@ -1,3 +1,6 @@
+package camilo.antonio.test;
+
+import camilo.antonio.core.BaseTest;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Alert;
@@ -6,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import static camilo.antonio.core.DriveFactory.getDriver;
 
-public class TesteCadastroRegraDeNegocio extends BaseTest{
+public class TesteCadastroRegraDeNegocio extends BaseTest {
     @Test
     public void deveValidarNomeObrigatorio() {
         page.botaoCadastrar();

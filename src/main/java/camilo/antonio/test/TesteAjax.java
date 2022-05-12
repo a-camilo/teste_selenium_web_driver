@@ -1,3 +1,5 @@
+package camilo.antonio.test;
+
 import camilo.antonio.core.DSL;
 import org.junit.After;
 import org.junit.Assert;

@@ -1,11 +1,16 @@
+package camilo.antonio.test;
+
+import camilo.antonio.core.BaseTest;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 
+import java.time.Duration;
+
 import static camilo.antonio.core.DriveFactory.getDriver;
 
-public class TesteAlert extends BaseTest{
+public class TesteAlert extends BaseTest {
 
     @Test
     public void deveInteragirComAlertSimples() {
@@ -19,6 +24,7 @@ public class TesteAlert extends BaseTest{
 
     @Test
     public void deveInteragirComAlertConfirm() {
+
         getDriver().findElement(By.id("confirm")).click();
         Alert alert = getDriver().switchTo().alert();
         String texto = alert.getText();
@@ -27,7 +33,7 @@ public class TesteAlert extends BaseTest{
         texto = alert.getText();
         Assertions.assertEquals("Confirmado", texto);
         alert.accept();
-
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         getDriver().findElement(By.id("confirm")).click();
         alert = getDriver().switchTo().alert();

@@ -1,3 +1,6 @@
+package camilo.antonio.test;
+
+import camilo.antonio.core.BaseTest;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -10,12 +13,12 @@ import static camilo.antonio.core.DriveFactory.getDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TesteCampoTreinamento extends BaseTest{
+public class TesteCampoTreinamento extends BaseTest {
 
     @Test
     public void testeTextField() {
         dsl.escreve(By.id("elementosForm:nome"), "Teste");
-        assertEquals("Teste", dsl.obterValorCampo("elementosForm:nome"));
+        Assertions.assertEquals("Teste", dsl.obterValorCampo("elementosForm:nome"));
     }
 
     @Test
@@ -30,13 +33,13 @@ public class TesteCampoTreinamento extends BaseTest{
     @Test
     public void deveInteragirTextArea() {
         dsl.escreve(By.id("elementosForm:sugestoes"), "Testando a text area");
-        assertEquals("Testando a text area", dsl.obterValorCampo("elementosForm:sugestoes"));
+        Assertions.assertEquals("Testando a text area", dsl.obterValorCampo("elementosForm:sugestoes"));
     }
 
     @Test
     public void deveInteragirRadioButton() {
         dsl.clicarRadio("elementosForm:sexo:1");
-        assertTrue(dsl.isRadioSelected("elementosForm:sexo:1"));
+        Assertions.assertTrue(dsl.isRadioSelected("elementosForm:sexo:1"));
     }
 
     @Test
@@ -76,12 +79,12 @@ public class TesteCampoTreinamento extends BaseTest{
     @Test
     public void deveInteragirComLink() {
         dsl.link("Voltar");
-        assertEquals("Voltou!", dsl.obterTexto("resultado"));
+        Assertions.assertEquals("Voltou!", dsl.obterTexto("resultado"));
     }
 
     @Test
     public void deveProcurarTextoNaPagina() {
-        assertEquals("Campo de Treinamento", dsl.obterTexto(By.tagName("h3")));
+        Assertions.assertEquals("Campo de Treinamento", dsl.obterTexto(By.tagName("h3")));
     }
 
     @Test

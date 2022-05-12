@@ -1,7 +1,10 @@
+package camilo.antonio.test;
+
+import camilo.antonio.core.BaseTest;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
-public class TesteXpath extends BaseTest{
+public class TesteXpath extends BaseTest {
 
     @Test
     public void textFildNome(){

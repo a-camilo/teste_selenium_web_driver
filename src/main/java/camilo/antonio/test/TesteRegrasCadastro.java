@@ -1,3 +1,6 @@
+package camilo.antonio.test;
+
+import camilo.antonio.core.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +13,7 @@ import java.util.Collection;
 import java.util.List;
 
 @RunWith(Parameterized.class)
-public class TesteRegrasCadastro extends BaseTest{
+public class TesteRegrasCadastro extends BaseTest {
 
     @Parameter
     public String nome;

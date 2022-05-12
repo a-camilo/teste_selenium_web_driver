@@ -1,3 +1,6 @@
+package camilo.antonio.test;
+
+import camilo.antonio.core.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,13 +1,10 @@
-import camilo.antonio.core.DSL;
+package camilo.antonio.page;
+
+import camilo.antonio.core.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-public class CampoTreinamentoPage {
-    public DSL dsl;
+public class CampoTreinamentoPage extends BasePage {
 
-    public CampoTreinamentoPage() {
-        dsl = new DSL();
-    }
 
     public void setNome(String nome) {
         dsl.escreve(By.id("elementosForm:nome"), nome);
